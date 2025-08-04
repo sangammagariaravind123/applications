@@ -1,10 +1,10 @@
 #Requires AutoHotkey v2.0
-MsgBox("Scroll script is running. UpArrKey to scroll up, DownArrKey to scroll down, Control to Pause, Shift to stop script.")
+MsgBox("Scroll script is running. UpArrKey to scroll up, DownArrKey to scroll down, Shift to Pause, Control to stop script.")
 
 Up:: {
     loop {
         Send("{WheelUp}")
-        if GetKeyState("Control", "P") {
+        if GetKeyState("Shift", "P") {
             break
         }
     } }
@@ -12,9 +12,9 @@ Up:: {
 Down:: {
     loop {
         Send("{WheelDown}")
-        if GetKeyState("Control", "P") {
+        if GetKeyState("Shift", "P") {
             break
         }
     } }
 
-Shift:: ExitApp
+Control:: ExitApp
