@@ -14,7 +14,7 @@ loop {
     ; Check all PNG images in the script's directory
     loop Files, A_ScriptDir "\*.png" {
         imagePath := A_LoopFileFullPath
-        if (ImageSearch(&foundX, &foundY, A_ScreenWidth/2, A_ScreenHeight/2, A_ScreenWidth, A_ScreenHeight, "*30 " imagePath)) {
+        if (ImageSearch(&foundX, &foundY, A_ScreenWidth/2, A_ScreenHeight/2, A_ScreenWidth, A_ScreenHeight, "*5 " imagePath)) {
             Click(foundX, foundY)
             Sleep 500
 	    continue
