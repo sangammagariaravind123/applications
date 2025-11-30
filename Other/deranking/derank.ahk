@@ -56,7 +56,10 @@ start() {
     else if (ImageSearch(&retryx, &retryy, 400, 400, 1800, 1000, "*20 retry.png")) {
         Click(retryx, retryy)
     }
-    else if (ImageSearch(&mp1x, &mp1y, 400, 400, 1800, 1000, "*20 mp1.png")) {
+    else if (ImageSearch(&mp1x, &mp1y, 0, 600, 960, 1200, "*20 mp1.png")) {
         Click(mp1x, mp1y)
+    }
+    else if (ImageSearch(&rewardnextx, &rewardnexty, 1440, 900, 1910, 1180, "*20 rewardnext.png")) {
+        Click(rewardnextx, rewardnexty)
     }
 }
