@@ -7,9 +7,9 @@
     ExitApp
 }
 
+global derank_count := 0
 loop {
     global flag := True
-    global derank_count := 0
     start()
 }
 
@@ -46,7 +46,7 @@ start() {
     }
     else if (ImageSearch(&rank_downx, &rank_downy, 400, 400, 1800, 1000, "*20 rank_down.png")) {
         Click(rank_downx, rank_downy)
-        derank_count++
+        global derank_count := derank_count + 1
     }
     if (derank_count >= 3) {
         MsgBox "Deranking completed. Total deranks: " . derank_count
@@ -55,5 +55,8 @@ start() {
     ;connection error => retry button
     else if (ImageSearch(&retryx, &retryy, 400, 400, 1800, 1000, "*20 retry.png")) {
         Click(retryx, retryy)
+    }
+    else if (ImageSearch(&mp1x, &mp1y, 400, 400, 1800, 1000, "*20 mp1.png")) {
+        Click(mp1x, mp1y)
     }
 }
