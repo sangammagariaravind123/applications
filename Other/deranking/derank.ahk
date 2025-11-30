@@ -52,4 +52,8 @@ start() {
         MsgBox "Deranking completed. Total deranks: " . derank_count
         ExitApp
     }
+    ;connection error => retry button
+    else if (ImageSearch(&retryx, &retryy, 400, 400, 1800, 1000, "*20 retry.png")) {
+        Click(retryx, retryy)
+    }
 }
