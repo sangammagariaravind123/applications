@@ -38,14 +38,18 @@ start() {
     else if (ImageSearch(&next1x, &next1y, 1440, 900, 1910, 1180, "*20 next1.png")) {
         Click(next1x, next1y)
     }
-    else if (ImageSearch(&disconnectedx, &disconnectedy, 1000, 600, 1910, 1180, "*20 disconnected.png")) {
+    else if (ImageSearch(&disconnectedx, &disconnectedy, 1440, 900, 1910, 1180, "*20 disconnected.png")) {
         Click(disconnectedx, disconnectedy)
     }
     else if (ImageSearch(&watchadx, &watchady, 1000, 600, 1910, 1180, "*20 watchad.png")) {
         Click(watchadx, watchady)
     }
-    else if (ImageSearch(&rank_downx, &rank_downy, 1000, 600, 1910, 1180, "*20 rank_down.png")) {
+    else if (ImageSearch(&rank_downx, &rank_downy, 400, 400, 1800, 1000, "*20 rank_down.png")) {
         Click(rank_downx, rank_downy)
         derank_count++
+    }
+    if (derank_count >= 3) {
+        MsgBox "Deranking completed. Total deranks: " . derank_count
+        ExitApp
     }
 }
