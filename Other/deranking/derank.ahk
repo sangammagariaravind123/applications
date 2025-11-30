@@ -37,7 +37,13 @@ start() {
     else if (ImageSearch(&next1x, &next1y, 1440, 900, 1910, 1180, "*20 next1.png")) {
         Click(next1x, next1y)
     }
-    else if (ImageSearch(&watchadx, &watchady, 1440, 900, 1910, 1180, "*20 watchad.png")) {
+    else if (ImageSearch(&watchadx, &watchady, 1000, 600, 1910, 1180, "*20 watchad.png")) {
+        Click(watchadx, watchady)
+    }
+    else if (ImageSearch(&watchadx, &watchady, 1000, 600, 1910, 1180, "*20 watchad.png")) {
+        Click(watchadx, watchady)
+    }
+    else if (ImageSearch(&watchadx, &watchady, 1000, 600, 1910, 1180, "*20 watchad.png")) {
         Click(watchadx, watchady)
     }
 }
