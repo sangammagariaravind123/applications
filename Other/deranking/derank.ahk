@@ -9,6 +9,7 @@
 
 loop {
     global flag := True
+    global derank_count := 0
     start()
 }
 
@@ -45,5 +46,6 @@ start() {
     }
     else if (ImageSearch(&rank_downx, &rank_downy, 1000, 600, 1910, 1180, "*20 rank_down.png")) {
         Click(rank_downx, rank_downy)
+        derank_count++
     }
 }
