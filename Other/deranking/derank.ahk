@@ -37,13 +37,13 @@ start() {
     else if (ImageSearch(&next1x, &next1y, 1440, 900, 1910, 1180, "*20 next1.png")) {
         Click(next1x, next1y)
     }
-    else if (ImageSearch(&watchadx, &watchady, 1000, 600, 1910, 1180, "*20 watchad.png")) {
-        Click(watchadx, watchady)
+    else if (ImageSearch(&disconnectedx, &disconnectedy, 1000, 600, 1910, 1180, "*20 disconnected.png")) {
+        Click(disconnectedx, disconnectedy)
     }
     else if (ImageSearch(&watchadx, &watchady, 1000, 600, 1910, 1180, "*20 watchad.png")) {
         Click(watchadx, watchady)
     }
-    else if (ImageSearch(&watchadx, &watchady, 1000, 600, 1910, 1180, "*20 watchad.png")) {
-        Click(watchadx, watchady)
+    else if (ImageSearch(&rank_downx, &rank_downy, 1000, 600, 1910, 1180, "*20 rank_down.png")) {
+        Click(rank_downx, rank_downy)
     }
 }
