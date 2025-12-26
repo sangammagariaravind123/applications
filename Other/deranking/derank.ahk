@@ -23,7 +23,7 @@ start() {
         Sleep 1500
         Sleep 200
         MouseMove(100, 100)
-        Send("{Q}")
+        ;Send("{Q}")
         Sleep 1500
         Send("{Down}")
         Sleep 500
@@ -41,9 +41,12 @@ start() {
     else if (ImageSearch(&disconnectedx, &disconnectedy, 1440, 900, 1910, 1180, "*20 disconnected.png")) {
         Click(disconnectedx, disconnectedy)
     }
-    else if (ImageSearch(&watchadx, &watchady, 1000, 600, 1910, 1180, "*20 watchad.png")) {
-        Click(watchadx, watchady)
+    else if (ImageSearch(&missoutx, &missouty, 1440, 900, 1910, 1180, "*20 missout.png")) {
+        Click(missoutx, missouty)
     }
+    ;else if (ImageSearch(&watchadx, &watchady, 1000, 600, 1910, 1180, "*20 watchad.png")) {
+    ;    Click(watchadx, watchady)
+    ;}
     else if (ImageSearch(&rank_downx, &rank_downy, 400, 400, 1800, 1000, "*20 rank_down.png")) {
         Click(rank_downx, rank_downy)
         global derank_count := derank_count + 1
@@ -61,5 +64,10 @@ start() {
     }
     else if (ImageSearch(&rewardnextx, &rewardnexty, 1440, 900, 1910, 1180, "*20 rewardnext.png")) {
         Click(rewardnextx, rewardnexty)
+    }
+    else if (ImageSearch(&servererrx, &servererry, 1440, 900, 1910, 1180, "*20 servererr.png")) {
+        Click(servererrx, servererry)
+        Sleep 1000
+        Send("{Esc}")
     }
 }
