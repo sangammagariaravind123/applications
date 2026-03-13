@@ -8,6 +8,7 @@
 }
 
 global derank_count := 0
+global idlecount := 0
 loop {
     global flag := True
     start()
@@ -22,12 +23,14 @@ start() {
         Click(grx, gry)
         Sleep 1500
         Sleep 200
-        MouseMove(100, 100)
-        ;Send("{Q}")
-        Sleep 1500
-        Send("{Down}")
+        Send("{Q}")
+        Sleep 2000
+        Click(1107, 164)
+        Sleep 100
+        Send("{Enter}")
         Sleep 500
         Send("{Enter}")
+        MouseMove(100, 100)
     }
     else if (ImageSearch(&playx, &playy, 1440, 900, 1910, 1180, "*20 play.png")) {
         Click(playx, playy)
@@ -51,7 +54,7 @@ start() {
         Click(rank_downx, rank_downy)
         global derank_count := derank_count + 1
     }
-    if (derank_count >= 3) {
+    if (derank_count >= 30) {
         MsgBox "Deranking completed. Total deranks: " . derank_count
         ExitApp
     }
@@ -69,5 +72,12 @@ start() {
         Click(servererrx, servererry)
         Sleep 1000
         Send("{Esc}")
+    }
+    else {
+        global idlecount := idlecount + 1
+    }
+    if (idlecount >= 5) {
+        MouseMove 100, 100, 100
+        global idlecount := 0
     }
 }

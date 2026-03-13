@@ -27,7 +27,7 @@ n := 0
 ; IMAGE MATCHING CHECK
 loop {
     ToolTip "Visible: " v "`n Not visible: " n
-    if (ImageSearch(&helloX, &helloY, 0, 0, A_ScreenWidth, A_ScreenHeight, "*20 close.png")) {
+    if (ImageSearch(&helloX, &helloY, 0, 0, A_ScreenWidth, A_ScreenHeight, "retry.png")) {
         v++
     }
     else {

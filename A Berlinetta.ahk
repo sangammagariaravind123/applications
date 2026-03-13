@@ -1,14 +1,11 @@
 #Requires AutoHotkey v2.0
 #SingleInstance
 
-; Asphalt - v24.0.1f - DX12
-;Asphalt Legends Unite
-
 MsgBox("Use Ctrl+Shift+Enter to stop the script `n It's not recommended to switch apps without stopping the script.`n If you are fine with the risk of pausing the script instead of stopping it, you can use Ctrl+Shift+T. This will hit Esc(automatically) and pause the script at the same time.`n Click OK and game will start automatically you dont have to do anything unless stuck. `nThe script will start within 6 seconds of clicking OK", "SCG 004C script started")
 
 ; TraySetIcon("apexicon.png")
 open() {
-    if !WinExist("Asphalt - v24.5.0n - D3D12") and !WinExist("Asphalt Legends Unite") {
+    if !WinExist("Asphalt - v48.0.5a - D3D12") and !WinExist("Asphalt Legends Unite") {
         Run "C:\XboxGames\Asphalt Legends Unite\Content\Asphalt9_gdk_x64_rtl.exe"
         ; Send("^{Esc}")
         ; Sleep 200
@@ -24,8 +21,8 @@ open() {
         Sleep 1000
         Send "{# Up}"
     }
-    else if WinExist("Asphalt - v24.5.0n - D3D12") {
-        WinActivate("Asphalt - v24.5.0n - D3D12")
+    else if WinExist("Asphalt - v48.0.5a - D3D12") {
+        WinActivate("Asphalt - v48.0.5a - D3D12")
     }
 }
 
@@ -75,12 +72,12 @@ loop {
 
 
 start() {
-    if (ImageSearch(&SCG2X, &SCG2Y, 0, 0, A_ScreenWidth, A_ScreenHeight, "*40 sennagtr.png")) {
+    if (ImageSearch(&SCG2X, &SCG2Y, 0, 0, A_ScreenWidth, A_ScreenHeight, "*40 berlinetta.png")) {
         Click(SCG2X, SCG2Y)
         Sleep(1000)
         Click(SCG2X, SCG2Y)
     }
-    if (ImageSearch(&SCGX, &SCGY, 0, 0, A_ScreenWidth, A_ScreenHeight, "*40 sennagtr.png")) {
+    else if (ImageSearch(&SCGX, &SCGY, 0, 0, A_ScreenWidth, A_ScreenHeight, "*40 berlinetta.png")) {
         Click(SCGX, SCGY)
     }
 
@@ -95,30 +92,35 @@ start() {
     ;     Send("{Enter}")
     ;     Sleep(1000)
     ;     global flag2 := False
-
     ; }
+
+    ; MISSOUT
+    else if (ImageSearch(&missoutX, &missoutY, A_ScreenWidth / 2, A_ScreenHeight / 2, A_ScreenWidth, A_ScreenHeight, "missout.png")) {
+        Click(missoutX, missoutY)
+        global flag2 := False
+    }
 
 
     ; RESUME AD
 
-    if (ImageSearch(&msad, &doiasjh, 0, 0, A_ScreenWidth, A_ScreenHeight, "*50 minimised.png")) {
+    else if (ImageSearch(&msad, &doiasjh, 0, 0, A_ScreenWidth, A_ScreenHeight, "*50 minimised.png")) {
         WinMaximize
     }
-    if (ImageSearch(&resumeadX, &resumeadY, 0, 0, A_ScreenWidth, A_ScreenHeight, "resumead.png")) {
+    else if (ImageSearch(&resumeadX, &resumeadY, 0, 0, A_ScreenWidth, A_ScreenHeight, "resumead.png")) {
         Click(resumeadX, resumeadY)
         Sleep(500)
     }
-    if (ImageSearch(&retryX, &retryY, 0, 0, A_ScreenWidth, A_ScreenHeight, "retry.png")) {
+    else if (ImageSearch(&retryX, &retryY, 0, 0, A_ScreenWidth, A_ScreenHeight, "retry.png")) {
         Click(retryX, retryY)
         Sleep(500)
     }
     ; PAUSE AD
-    else if (ImageSearch(&endadX, &endadY, 0, 0, A_ScreenWidth, A_ScreenHeight, "endad.png")) {
-        Click(endadX, endadY)
-    }
+    ; else if (ImageSearch(&endadX, &endadY, 0, 0, A_ScreenWidth, A_ScreenHeight, "endad.png")) {
+    ;     Click(endadX, endadY)
+    ; }
 
     ; NEXT 2 (Claim Rewards)
-    if (ImageSearch(&next2X, &next2Y, 0, 0, A_ScreenWidth, A_ScreenHeight, "*20 next2.png")) {
+    else if (ImageSearch(&next2X, &next2Y, A_ScreenWidth / 2, A_ScreenHeight / 2, A_ScreenWidth, A_ScreenHeight, "next2.png")) {
         Click(next2X, next2Y)
         global flag2 := True
     }
@@ -126,16 +128,16 @@ start() {
         Send("{Esc}")
         Sleep(500)
     }
-    else if (ImageSearch(&dailyeventsX, &dailyeventsY, 0, 0, A_ScreenWidth, A_ScreenHeight, "*20 dailyevents2.png")) {
+    else if (ImageSearch(&dailyeventsX, &dailyeventsY, 0, 0, A_ScreenWidth, A_ScreenHeight, "dailyevents.png")) {
         Click(dailyeventsX, dailyeventsY)
         Sleep(500)
     }
-    else if (ImageSearch(&dailyeventsX, &dailyeventsY, 0, 0, A_ScreenWidth, A_ScreenHeight, "*20 dailyevents.png")) {
+    else if (ImageSearch(&dailyeventsX, &dailyeventsY, 0, 0, A_ScreenWidth, A_ScreenHeight, "dailyevents2.png")) {
         Click(dailyeventsX, dailyeventsY)
         Sleep(1500)
         global flag2 := True
         x := 0
-        loop 13 {
+        loop 8 {
             Send "{Right Down}"
             Sleep 200
             Send "{Right Up}"
@@ -144,7 +146,7 @@ start() {
             MouseMove(259, 760)
 
             Sleep(200)
-            if (ImageSearch(&SCGX, &SCGY, 0, 0, A_ScreenWidth, A_ScreenHeight, "*40 sennagtr.png")) {
+            if (ImageSearch(&SCGX, &SCGY, 0, 0, A_ScreenWidth, A_ScreenHeight, "*40 berlinetta.png")) {
                 Sleep(1000)
                 Click(SCGX, SCGY)
                 Sleep(1000)
@@ -152,7 +154,7 @@ start() {
                 f := True
                 break
             }
-            else if (ImageSearch(&SCG2X, &SCG2Y, 0, 0, A_ScreenWidth, A_ScreenHeight, "*40 sennagtr.png")) {
+            else if (ImageSearch(&SCG2X, &SCG2Y, 0, 0, A_ScreenWidth, A_ScreenHeight, "*40 berlinetta.png")) {
                 Click(SCG2X, SCG2Y)
             }
             if f {
@@ -162,23 +164,17 @@ start() {
     }
 
     ;NEXT 0
-    if (ImageSearch(&nextX, &nextY, 0, 0, A_ScreenWidth, A_ScreenHeight, "*20 next.png")) {
+    else if (ImageSearch(&nextX, &nextY, A_ScreenWidth / 2, A_ScreenHeight / 2, A_ScreenWidth, A_ScreenHeight, "next.png")) {
         Click(nextX, nextY)
     }
 
     ;NEXT 1
-    if (ImageSearch(&next1X, &next1Y, 0, 0, A_ScreenWidth, A_ScreenHeight, "*20 next1.png")) {
+    else if (ImageSearch(&next1X, &next1Y, A_ScreenWidth / 2, A_ScreenHeight / 2, A_ScreenWidth, A_ScreenHeight, "next1.png")) {
         Click(next1X, next1Y)
     }
-    ; MISSOUT
-    if (ImageSearch(&missoutX, &missoutY, 0, 0, A_ScreenWidth, A_ScreenHeight, "*20 missout.png")) {
-        Click(missoutX, missoutY)
-        global flag2 := False
-    }
-
 
     ;OPEN EVENT
-    if (ImageSearch(&RaceX, &RaceY, 0, 0, A_ScreenWidth, A_ScreenHeight, "*20 race.png")) {
+    else if (ImageSearch(&RaceX, &RaceY, A_ScreenWidth / 2, A_ScreenHeight / 2, A_ScreenWidth, A_ScreenHeight, "race.png")) {
         Click(RaceX, RaceY)
         MouseMove 100, 100
         Sleep(2000)
@@ -189,8 +185,18 @@ start() {
         MouseMove 1974, 1811
     }
 
+    ;NO FUEL
+    if (ImageSearch(&skipx, &skipy, A_ScreenWidth / 2, A_ScreenHeight / 2, A_ScreenWidth, A_ScreenHeight, "skip.png")) {
+        Send("{A}")
+        Sleep 500
+    }
+    if (ImageSearch(&classBx, &classBy, A_ScreenWidth / 2, 0, A_ScreenWidth, A_ScreenHeight / 2, "classB.png")) {
+        Send("{A}")
+        Sleep 500
+    }
+
     ;CLICK PLAY
-    if (ImageSearch(&PlayX, &PlayY, 0, 0, A_ScreenWidth, A_ScreenHeight, "play.png")) {
+    else if (ImageSearch(&PlayX, &PlayY, A_ScreenWidth / 2, A_ScreenHeight / 2, A_ScreenWidth, A_ScreenHeight, "play.png") & ImageSearch(&skipx, &skipy, A_ScreenWidth / 2, A_ScreenHeight / 2, A_ScreenWidth, A_ScreenHeight, "classC.png")) {
         Click(PlayX, PlayY)
         Sleep(1500)
         if (ImageSearch(&refillticketsX, &refillticketsY, 0, 0, A_ScreenWidth, A_ScreenHeight, "refilltickets.png")) {
@@ -234,27 +240,12 @@ start() {
     }
 
     ; TOKEN REFILL FUEL
-    if (ImageSearch(&tk2X, &tk2y, 0, 0, A_ScreenWidth, A_ScreenHeight, "tokenrefill2.png")) {
+    else if (ImageSearch(&tk2X, &tk2y, 0, 0, A_ScreenWidth, A_ScreenHeight, "tokenrefill2.png")) {
         Click(tk2X, tk2y)
     }
 
-    ;DIRECT FUEL WATCH
-    if (ImageSearch(&fwatchX1, &fwatchY1, 0, 0, A_ScreenWidth, A_ScreenHeight, "fuelwatchad.png")) {
-        Click(fwatchX1, fwatchY1)
-        Sleep(44000)
-
-        Send("{Tab}")
-        Sleep(100)
-        Send("{Tab}")
-        Sleep(100)
-        Send("{Enter}")
-        Sleep(1500)
-        Send("{Esc}")
-        Sleep(2000)
-    }
-
     ; CHECK REFILL TICKET WINDOW
-    if (ImageSearch(&refillticketsX, &refillticketsY, 0, 0, A_ScreenWidth, A_ScreenHeight, "refilltickets.png")) {
+    else if (ImageSearch(&refillticketsX, &refillticketsY, 0, 0, A_ScreenWidth, A_ScreenHeight, "refilltickets.png")) {
         if (ImageSearch(&twatchX, &twatchY, 0, 0, A_ScreenWidth, A_ScreenHeight, "*20 ticketwatchad.png")) {
             ToolTip "Start() -4.1"
             SetTimer () => ToolTip(), -1500
@@ -268,6 +259,7 @@ start() {
             Sleep(2000)
             Send("{Esc}")
         }
+        ; TOKEN REFILL TICKETS
         else {
             ImageSearch(&tokenrefillX, &tokenrefillY, 0, 0, A_ScreenWidth, A_ScreenHeight, "tokenrefill.png")
             Click tokenrefillX, tokenrefillY
@@ -285,30 +277,8 @@ start() {
         ; }
     }
 
-    ;CHECK SKIP REFILL FUEL
-    else if (ImageSearch(&SkipX, &SkipY, A_ScreenWidth / 2, A_ScreenHeight / 2, A_ScreenWidth, A_ScreenHeight, "skip.png")) {
-        Click(SkipX, SkipY)
-        Sleep(1500)
-        if (ImageSearch(&tk2X, &tk2y, A_ScreenWidth / 2, A_ScreenHeight / 2, A_ScreenWidth, A_ScreenHeight, "tokenrefill2.png")) {
-            Click(tk2X, tk2y)
-        }
-        ; ImageSearch(&fwatchX, &fwatchY, 0, 0, A_ScreenWidth, A_ScreenHeight, "fuelwatchad.png")
-        ; Click(fwatchX, fwatchY)
-        ; Sleep(44000)
-        ; Send("{Tab}")
-        ; Sleep(100)
-        ; Send("{Tab}")
-        ; Sleep(100)
-        ; Send("{Enter}")
-        ; Sleep(2000)
-        ; Send("{Esc}")
-        ; Sleep(2000)
-        ; Send("{Esc}")
-        ; Sleep(1300)
-    }
-
     ;If TOUCHDRIVE is off
-    if (ImageSearch(&tdoffX, &tdoffY, 0, 0, A_ScreenWidth, A_ScreenHeight, "tdoff.png")) {
+    if (ImageSearch(&tdoffX, &tdoffY, A_ScreenWidth / 2, A_ScreenHeight / 2, A_ScreenWidth, A_ScreenHeight, "tdoff.png")) {
         ImageSearch(&tdonX, &tdonY, 0, 0, A_ScreenWidth, A_ScreenHeight, "tdon.png")
         Click(tdonX, tdonY + 30)
         Sleep(1500)
@@ -320,47 +290,47 @@ start() {
 play() {
     ToolTip "Race start"
     SetTimer () => ToolTip(), -1500
-    Sleep(4000) ;4000
-    Send("{a}")
-    ToolTip "Left"
-    SetTimer () => ToolTip(), -1500
-    Sleep(2000) ;6000
-    Send("{Space}")
-    Send("{Space}")
-    ToolTip "Orange Nitro"
-    SetTimer () => ToolTip(), -1500
-    Sleep(2000)
-    Send("{s down}") ;8000
-    Sleep(30)
-    Send("{s up}") ;8000
-    SetTimer () => ToolTip(), -1500
-    Sleep(6200)
-    Send("{Space}") ;14200
-    Sleep(700)
-    Send("{Space}") ;14900
-    SetTimer () => ToolTip(), -1500
-    Sleep(1900)
-    Send("{s down}") ;16800
-    Sleep(30)
-    Send("{s up}") ;16800
-    Sleep(8200)
-    Send("{a}") ;25000
-    Sleep(1500)
-    Send("{Space}")
-    Send("{Space}")
-    Sleep(2000)
-    Send("{a}")
-    Sleep(500)
-    Send("{Space}")
-    Send("{Space}")
-    Sleep(500)
-    Send("{d}")
-    Sleep(3000)
-    Send("{s}")
-    Sleep(4000)
-    Send("{Space}")
-    Sleep(700)
-    Send("{Space}")
+    ; Sleep(4000) ;4000
+    ; Send("{a}")
+    ; ToolTip "Left"
+    ; SetTimer () => ToolTip(), -1500
+    ; Sleep(2000) ;6000
+    ; Send("{Space}")
+    ; Send("{Space}")
+    ; ToolTip "Orange Nitro"
+    ; SetTimer () => ToolTip(), -1500
+    ; Sleep(2000)
+    ; Send("{s down}") ;8000
+    ; Sleep(30)
+    ; Send("{s up}") ;8000
+    ; SetTimer () => ToolTip(), -1500
+    ; Sleep(6200)
+    ; Send("{Space}") ;14200
+    ; Sleep(700)
+    ; Send("{Space}") ;14900
+    ; SetTimer () => ToolTip(), -1500
+    ; Sleep(1900)
+    ; Send("{s down}") ;16800
+    ; Sleep(30)
+    ; Send("{s up}") ;16800
+    ; Sleep(8200)
+    ; Send("{a}") ;25000
+    ; Sleep(1500)
+    ; Send("{Space}")
+    ; Send("{Space}")
+    ; Sleep(2000)
+    ; Send("{a}")
+    ; Sleep(500)
+    ; Send("{Space}")
+    ; Send("{Space}")
+    ; Sleep(500)
+    ; Send("{d}")
+    ; Sleep(3000)
+    ; Send("{s}")
+    ; Sleep(4000)
+    ; Send("{Space}")
+    ; Sleep(700)
+    ; Send("{Space}")
 
 
     global flag := False
