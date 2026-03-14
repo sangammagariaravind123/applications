@@ -72,14 +72,14 @@ loop {
 
 
 start() {
-    if (ImageSearch(&SCG2X, &SCG2Y, 0, 0, A_ScreenWidth, A_ScreenHeight, "*40 berlinetta.png")) {
-        Click(SCG2X, SCG2Y)
-        Sleep(1000)
-        Click(SCG2X, SCG2Y)
-    }
-    else if (ImageSearch(&SCGX, &SCGY, 0, 0, A_ScreenWidth, A_ScreenHeight, "*40 berlinetta.png")) {
-        Click(SCGX, SCGY)
-    }
+    ; if (ImageSearch(&SCG2X, &SCG2Y, 0, 0, A_ScreenWidth, A_ScreenHeight, "*40 berlinetta.png")) {
+    ;     Click(SCG2X, SCG2Y)
+    ;     Sleep(1000)
+    ;     Click(SCG2X, SCG2Y)
+    ; }
+    ; else if (ImageSearch(&SCGX, &SCGY, 0, 0, A_ScreenWidth, A_ScreenHeight, "*40 berlinetta.png")) {
+    ;     Click(SCGX, SCGY)
+    ; }
 
     ; CREDITS MULTIPLIER WATCH AD
     ; if (ImageSearch(&credwaX, &credwaY, 0, 0, A_ScreenWidth, A_ScreenHeight, "creditswatchad.png")) {
@@ -95,14 +95,13 @@ start() {
     ; }
 
     ; MISSOUT
-    else if (ImageSearch(&missoutX, &missoutY, A_ScreenWidth / 2, A_ScreenHeight / 2, A_ScreenWidth, A_ScreenHeight, "missout.png")) {
+    if (ImageSearch(&missoutX, &missoutY, A_ScreenWidth / 2, A_ScreenHeight / 2, A_ScreenWidth, A_ScreenHeight, "missout.png")) {
         Click(missoutX, missoutY)
         global flag2 := False
     }
 
 
     ; RESUME AD
-
     else if (ImageSearch(&msad, &doiasjh, 0, 0, A_ScreenWidth, A_ScreenHeight, "*50 minimised.png")) {
         WinMaximize
     }
