@@ -20,7 +20,6 @@ CoordMode('Pixel', 'Screen')
 ;     Send "{Left}"
 ; }
 
-
 v := 0
 n := 0
 
@@ -37,9 +36,7 @@ loop {
     ToolTip "Visible: " v "`n Not visible: " n
 }
 
-
 ; ToolTip A_ScreenHeight / 2
-
 
 ; ToolTip "S"
 ; SetTimer () => ToolTip(), -1500
