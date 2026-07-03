@@ -38,13 +38,13 @@ start() {
     else if (ImageSearch(&next0x, &next0y, 1200, 700, 1680, 990, "*100 3next0.png")) {
         Click(next0x, next0y)
     }
-    else if (ImageSearch(&next1x, &next1y, 1200, 700, 1680, 990, "*20 4next1.png")) {
+    else if (ImageSearch(&next1x, &next1y, 1200, 700, 1680, 990, "*20 3next1.png")) {
         Click(next1x, next1y)
     }
-    else if (ImageSearch(&next2x, &next2y, 1200, 700, 1680, 990, "*20 4next2.png")) {
+    else if (ImageSearch(&next2x, &next2y, 1200, 700, 1680, 990, "*20 3next2.png")) {
         Click(next2x, next2y)
     }
-    else if (ImageSearch(&next3x, &next3y, 1200, 700, 1680, 990, "*20 4next3.png")) {
+    else if (ImageSearch(&next3x, &next3y, 1200, 700, 1680, 990, "*20 3next3.png")) {
         Click(next3x, next3y)
     }
     else if (ImageSearch(&disconnectedx, &disconnectedy, 1200, 700, 1680, 990, "*20 10disconnected.png")) {
@@ -63,7 +63,7 @@ start() {
         Click(rank_downx, rank_downy)
         global derank_count := derank_count + 1
     }
-    if (derank_count >= 30) {
+    if (derank_count >= 5) {
         MsgBox "Deranking completed. Total deranks: " . derank_count
         ExitApp
     }
@@ -88,9 +88,11 @@ start() {
     }
     else {
         global idlecount := idlecount + 1
+        ToolTip "Derank Count: " . derank_count . "`nIdle Count: " . idlecount
+        SetTimer () => ToolTip(), -1000
     }
-    if (idlecount >= 5) {
-        MouseMove 100, 100, 100
-        global idlecount := 0
-    }
+    ; if (idlecount >= 5) {
+    ;     MouseMove 100, 100, 100
+    ;     global idlecount := 0
+    ; }
 }
