@@ -1,7 +1,6 @@
 ﻿#Requires AutoHotkey v2.0
-
 #SingleInstance
-
+next()
 ^+Enter:: {
     MsgBox "Script Stopped"
     ExitApp
@@ -15,11 +14,7 @@ loop {
 }
 
 start() {
-    if (ImageSearch(&skipx, &skipy, 1200, 700, 1680, 990, "*20 20skip.png")) {
-        Send("{D}")
-        Sleep 500
-    }
-    else if (ImageSearch(&grx, &gry, 1200, 700, 1680, 990, "*20 1getready.png")) {
+    if (ImageSearch(&grx, &gry, 1200, 700, 1680, 990, "*20 1getready.png")) {
         Click(grx, gry)
         Sleep 1500
         Sleep 200
@@ -34,18 +29,6 @@ start() {
     }
     else if (ImageSearch(&playx, &playy, 1200, 700, 1680, 990, "*20 2play.png")) {
         Click(playx, playy)
-    }
-    else if (ImageSearch(&next0x, &next0y, 1200, 700, 1680, 990, "*100 3next0.png")) {
-        Click(next0x, next0y)
-    }
-    else if (ImageSearch(&next1x, &next1y, 1200, 700, 1680, 990, "*20 3next1.png")) {
-        Click(next1x, next1y)
-    }
-    else if (ImageSearch(&next2x, &next2y, 1200, 700, 1680, 990, "*20 3next2.png")) {
-        Click(next2x, next2y)
-    }
-    else if (ImageSearch(&next3x, &next3y, 1200, 700, 1680, 990, "*20 3next3.png")) {
-        Click(next3x, next3y)
     }
     else if (ImageSearch(&disconnectedx, &disconnectedy, 1200, 700, 1680, 990, "*20 10disconnected.png")) {
         Click(disconnectedx, disconnectedy)
@@ -95,4 +78,26 @@ start() {
     ;     MouseMove 100, 100, 100
     ;     global idlecount := 0
     ; }
+}
+
+skip() {
+    if (ImageSearch(&skipx, &skipy, 1200, 700, 1680, 990, "*20 20skip.png")) {
+        Send("{D}")
+        Sleep 500
+    }
+}
+
+next() {
+    if (ImageSearch(&next0x, &next0y, 1200, 700, 1680, 990, "*100 3next0.png")) {
+        Click(next0x, next0y)
+    }
+    else if (ImageSearch(&next1x, &next1y, 1200, 700, 1680, 990, "*20 3next1.png")) {
+        Click(next1x, next1y)
+    }
+    else if (ImageSearch(&next2x, &next2y, 1200, 700, 1680, 990, "*20 3next2.png")) {
+        Click(next2x, next2y)
+    }
+    else if (ImageSearch(&next3x, &next3y, 1200, 700, 1680, 990, "*20 3next3.png")) {
+        Click(next3x, next3y)
+    }
 }
