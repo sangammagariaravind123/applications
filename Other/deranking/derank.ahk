@@ -6,6 +6,7 @@ next()
     ExitApp
 }
 
+
 global derank_count := 0
 global idlecount := 0
 loop {
@@ -14,31 +15,15 @@ loop {
 }
 
 start() {
-    if (ImageSearch(&grx, &gry, 1200, 700, 1680, 990, "*20 1getready.png")) {
-        Click(grx, gry)
-        Sleep 1500
-        Sleep 200
-        Send("{Q}")
-        Sleep 2000
-        ; Click(1107, 164)
-        ; Sleep 100
-        Send("{Enter}")
-        Sleep 500
-        Send("{Enter}")
-        MouseMove(100, 100)
-    }
-    else if (ImageSearch(&playx, &playy, 1200, 700, 1680, 990, "*20 2play.png")) {
-        Click(playx, playy)
-    }
-    else if (ImageSearch(&disconnectedx, &disconnectedy, 1200, 700, 1680, 990, "*20 10disconnected.png")) {
+    getready()
+    play()
+    next()
+    missout()
+    skip()
+    if (ImageSearch(&disconnectedx, &disconnectedy, 1200, 700, 1680, 990, "*20 10disconnected.png")) {
         Click(disconnectedx, disconnectedy)
     }
-    else if (ImageSearch(&missoutx, &missouty, 1200, 700, 1680, 990, "*20 5missout.png")) {
-        Click(missoutx, missouty)
-    }
-    else if (ImageSearch(&missout2x, &missout2y, 1200, 700, 1680, 990, "*20 5missout2.png")) {
-        Click(missout2x, missout2y)
-    }
+
     ;else if (ImageSearch(&watchadx, &watchady, 1000, 600, 1910, 1180, "*20 20watchad.png")) {
     ;    Click(watchadx, watchady)
     ;}
@@ -72,12 +57,40 @@ start() {
     else {
         global idlecount := idlecount + 1
         ToolTip "Derank Count: " . derank_count . "`nIdle Count: " . idlecount
-        SetTimer () => ToolTip(), -1000
+        if idlecount > 9 {
+            Send("{Enter}")
+            SetTimer () => ToolTip(), -1000
+        }
     }
-    ; if (idlecount >= 5) {
-    ;     MouseMove 100, 100, 100
-    ;     global idlecount := 0
-    ; }
+    if (idlecount >= 10) {
+        MouseMove A_ScreenHeight, A_ScreenWidth
+        global idlecount := 0
+    }
+    MouseMove A_ScreenHeight, A_ScreenWidth
+}
+
+getready() {
+    if (ImageSearch(&grx, &gry, 1200, 700, 1680, 990, "*20 1getready.png")) {
+        Click(grx, gry)
+        Sleep 1500
+        Sleep 200
+        Send("{Q}")
+        Sleep 1000
+        ; Click(1107, 164)  ; Select League
+        ; Sleep 100
+        Send("{Enter}")
+        Sleep 500
+        Send("{Enter}")
+        MouseMove(A_ScreenHeight, A_ScreenWidth)
+        SetTimer () => ToolTip(), 0
+
+    }
+}
+
+play() {
+    if (ImageSearch(&playx, &playy, 1200, 700, 1680, 990, "*20 2play.png")) {
+        Click(playx, playy)
+    }
 }
 
 skip() {
@@ -99,5 +112,14 @@ next() {
     }
     else if (ImageSearch(&next3x, &next3y, 1200, 700, 1680, 990, "*20 3next3.png")) {
         Click(next3x, next3y)
+    }
+}
+
+missout() {
+    if (ImageSearch(&missoutx, &missouty, 1200, 700, 1680, 990, "*20 5missout.png")) {
+        Click(missoutx, missouty)
+    }
+    else if (ImageSearch(&missout2x, &missout2y, 1200, 700, 1680, 990, "*20 5missout2.png")) {
+        Click(missout2x, missout2y)
     }
 }
