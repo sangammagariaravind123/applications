@@ -24,6 +24,7 @@ start() {
     next()
     missout()
     skip()
+    quit()
     if (ImageSearch(&disconnectedx, &disconnectedy, 1200, 700, 1680, 990, "*20 10disconnected.png")) {
         Click(disconnectedx, disconnectedy)
     }
@@ -136,5 +137,11 @@ missout() {
     }
     else if (ImageSearch(&missout2x, &missout2y, 1200, 700, 1680, 990, "*20 5missout2.png")) {
         Click(missout2x, missout2y)
+    }
+}
+
+quit() {
+    if (ImageSearch(&quitx, &quity, 1200, 700, 1680, 990, "*20 5quit.png")) {
+        Click(quitx, quity)
     }
 }
