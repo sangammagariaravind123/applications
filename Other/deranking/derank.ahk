@@ -24,6 +24,7 @@ start() {
     next()
     missout()
     skip()
+    starup()
     quit()
     if (ImageSearch(&disconnectedx, &disconnectedy, 1200, 700, 1680, 990, "*20 10disconnected.png")) {
         Click(disconnectedx, disconnectedy)
@@ -111,6 +112,13 @@ play() {
 
 skip() {
     if (ImageSearch(&skipx, &skipy, 1200, 700, 1680, 990, "*20 20skip.png")) {
+        Send("{D}")
+        Sleep 500
+    }
+}
+
+starup() {
+    if (ImageSearch(&starupx, &starupy, 1200, 700, 1680, 990, "*20 10starup.png")) {
         Send("{D}")
         Sleep 500
     }
