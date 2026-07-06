@@ -94,7 +94,12 @@ getready() {
 play() {
     if (ImageSearch(&playx, &playy, 1200, 700, 1680, 990, "*20 2play.png")) {
         Click(playx, playy)
-        Sleep 18000
+        Sleep 2000
+        if (ImageSearch(&playx, &playy, 1200, 700, 1680, 990, "*20 2play.png")) {
+            Click(playx, playy)
+            Sleep 2000
+        }
+        Sleep 16000
         Send("{Esc}")
         Sleep 700
         if (ImageSearch(&quitx, &quity, 1200, 700, 1680, 990, "*20 5quit.png")) {
