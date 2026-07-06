@@ -1,11 +1,15 @@
 ﻿#Requires AutoHotkey v2.0
 #SingleInstance
-next()
+
 ^+Enter:: {
     MsgBox "Script Stopped"
     ExitApp
 }
 
+^+t:: {
+    Send("{Esc}")
+    Pause(A_IsPaused ? False : True)
+}
 
 global derank_count := 0
 global idlecount := 0
