@@ -11,12 +11,14 @@
     Pause(A_IsPaused ? False : True)
 }
 
+
+play()
 global derank_count := 0
 global idlecount := 0
-loop {
-    global flag := True
-    start()
-}
+; loop {
+;     global flag := True
+;     start()
+; }
 
 start() {
     getready()
