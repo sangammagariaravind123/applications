@@ -7,7 +7,6 @@
 }
 
 ^+t:: {
-    Send("{Esc}")
     Pause(A_IsPaused ? False : True)
 }
 
@@ -95,13 +94,16 @@ getready() {
 
 play() {
     if (ImageSearch(&playx, &playy, 1200, 700, 1680, 990, "*20 2play.png")) {
+        Sleep 500
         Click(playx, playy)
-        Sleep 2000
+        Sleep 500
+        MouseMove(A_ScreenHeight, A_ScreenWidth)
+        Sleep 1000
         if (ImageSearch(&playx, &playy, 1200, 700, 1680, 990, "*20 2play.png")) {
             Click(playx, playy)
             Sleep 2000
         }
-        Sleep 16000
+        Sleep 18000
         Send("{Esc}")
         Sleep 700
         if (ImageSearch(&quitx, &quity, 1200, 700, 1680, 990, "*20 5quit.png")) {
