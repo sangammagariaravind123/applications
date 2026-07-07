@@ -5,7 +5,6 @@
     MsgBox "Script Stopped"
     ExitApp
 }
-
 +z:: {
     Pause(A_IsPaused ? False : True)
 }
@@ -13,37 +12,26 @@
 global derank_count := 0
 global idlecount := 0
 loop {
-    global flag := True
     start()
     Sleep 100
 }
 
 start() {
-    if getready() {
-        Sleep 10
+    actions := [
+        getready, play, next, missout, skip, starup, quitbtn
+    ]
+    global idlecount := 0
+    for action in actions {
+        if (action()) {
+            return 0
+        }
     }
-    else if play() {
-        Sleep 10
-    }
-    else if next() {
+    if next() {
         Sleep 1000
-    }
-    else if missout() {
-        Sleep 10
-    }
-    else if skip() {
-        Sleep 10
-    }
-    else if starup() {
-        Sleep 10
-    }
-    else if quit() {
-        Sleep 10
     }
     else if (ImageSearch(&disconnectedx, &disconnectedy, 1200, 700, 1680, 990, "*20 10disconnected.png")) {
         Click(disconnectedx, disconnectedy)
     }
-
     ;else if (ImageSearch(&watchadx, &watchady, 1000, 600, 1910, 1180, "*20 20watchad.png")) {
     ;    Click(watchadx, watchady)
     ;}
@@ -66,12 +54,11 @@ start() {
     ; }
     else if (ImageSearch(&waitingx, &waitingy, 0, A_ScreenHeight / 2, A_ScreenWidth, A_ScreenHeight, "*20 2waiting.png")) {
         Click(waitingx, waitingy) ; 3 Waiting for other players
-        Sleep 500
-        Send("{Esc}")
-        Sleep 700
-        if (ImageSearch(&quitx, &quity, 1200, 700, 1680, 990, "*20 5quit.png")) {
-            Click(quitx, quity)
-        }
+        quit()
+    }
+    else if (ImageSearch(&inmatchx, &inmatchy, 0, A_ScreenHeight / 2, A_ScreenWidth, A_ScreenHeight, "*20 2inmatch.png")) {
+        Click(inmatchx, inmatchy) ; 3 Waiting for other players
+        quit()
     }
     else if (ImageSearch(&rewardnextx, &rewardnexty, 1200, 700, 1680, 990, "*20 6rewardnext.png")) {
         Click(rewardnextx, rewardnexty)
@@ -102,8 +89,7 @@ start() {
     ;     MouseMove A_ScreenHeight, A_ScreenWidth
     ; }
     MouseMove A_ScreenHeight, A_ScreenWidth, 5
-    global idlecount := 0
-    return 0
+    ; return 0
 }
 
 getready() {
@@ -127,7 +113,6 @@ getready() {
         return 1
     }
 }
-
 play() {
     if (ImageSearch(&playx, &playy, 1200, 700, 1680, 990, "*20 2play.png")) {
         Sleep 500
@@ -142,7 +127,6 @@ play() {
         return 1
     }
 }
-
 skip() {
     if (ImageSearch(&skipx, &skipy, 1200, 700, 1680, 990, "*20 20skip.png")) {
         Send("{D}")
@@ -150,7 +134,6 @@ skip() {
         return 1
     }
 }
-
 starup() {
     if (ImageSearch(&starupx, &starupy, 1200, 700, 1680, 990, "*20 10starup.png")) {
         Send("{D}")
@@ -158,7 +141,6 @@ starup() {
         return 1
     }
 }
-
 next() {
     if (ImageSearch(&next0x, &next0y, 1200, 700, 1680, 990, "*100 3next0.png")) {
         Click(next0x, next0y)
@@ -182,7 +164,6 @@ next() {
         return 0
     } return 1
 }
-
 missout() {
     if (ImageSearch(&missoutx, &missouty, 1200, 700, 1680, 990, "*20 5missout.png")) {
         Click(missoutx, missouty)
@@ -194,16 +175,22 @@ missout() {
         return 0
     } return 1
 }
-
-quit() {
+quitbtn() {
     if (ImageSearch(&quitx, &quity, 1200, 700, 1680, 990, "*20 5quit.png")) {
         Click(quitx, quity)
         return 1
     } return 0
 }
-
+quit() {
+    Sleep 500
+    Send("{Esc}")
+    Sleep 700
+    if (ImageSearch(&quitx, &quity, 1200, 700, 1680, 990, "*20 5quit.png")) {
+        Click(quitx, quity)
+    }
+}
 ; Helper function to click on an image if found
-ClickIfFound(file, x1, y1, x2, y2) {
+cf(file, x1, y1, x2, y2) {
     if ImageSearch(&x, &y, x1, y1, x2, y2, file) {
         Click(x, y)
         return true
