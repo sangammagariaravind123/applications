@@ -48,10 +48,25 @@ start() {
     else if (ImageSearch(&mp1x, &mp1y, 0, 600, 960, 1200, "*20 0mp1.png")) {
         Click(mp1x, mp1y)
     }
+    ; else if (ImageSearch(&searchingx, &searchingy, 0, A_ScreenHeight / 2, A_ScreenWidth, A_ScreenHeight, "*20 2searching.png")) {
+    ;     Click(searchingx, searchingy) ; 1 Searching for players and location
+    ; }
+    ; else if (ImageSearch(&initx, &inity, 0, A_ScreenHeight / 2, A_ScreenWidth, A_ScreenHeight, "*20 2init.png")) {
+    ;     Click(initx, inity) ; 2 Initializing race
+    ; }
+    else if (ImageSearch(&waitingx, &waitingy, 0, A_ScreenHeight / 2, A_ScreenWidth, A_ScreenHeight, "*20 2waiting.png")) {
+        Click(waitingx, waitingy) ; 3 Waiting for other players
+        Sleep 500
+        Send("{Esc}")
+        Sleep 700
+        if (ImageSearch(&quitx, &quity, 1200, 700, 1680, 990, "*20 5quit.png")) {
+            Click(quitx, quity)
+        }
+    }
     else if (ImageSearch(&rewardnextx, &rewardnexty, 1200, 700, 1680, 990, "*20 6rewardnext.png")) {
         Click(rewardnextx, rewardnexty)
     }
-    else if (ImageSearch(&servererrx, &servererry, 1200, 700, 1680, 990, "*20 10servererr.png")) {
+    else if (ImageSearch(&servererrx, &servererry, 0, 0, 1680, 990, "*20 10servererr.png")) {
         Click(servererrx, servererry)
         Sleep 1000
         Send("{Esc}")
@@ -72,7 +87,7 @@ start() {
     ; if (idlecount >= 3) {
     ;     MouseMove A_ScreenHeight, A_ScreenWidth
     ; }
-    MouseMove A_ScreenHeight, A_ScreenWidth
+    MouseMove A_ScreenHeight, A_ScreenWidth, 5
 }
 
 getready() {
@@ -89,7 +104,10 @@ getready() {
         Send("{Enter}")
         MouseMove(A_ScreenHeight, A_ScreenWidth)
         SetTimer () => ToolTip(), 0
-
+        Sleep 500
+        MouseMove(900, 1050, 100)
+        Sleep 500
+        Click(900, 1000)
     }
 }
 
