@@ -15,6 +15,7 @@ global idlecount := 0
 loop {
     global flag := True
     start()
+    Sleep 100
 }
 
 start() {
@@ -85,13 +86,13 @@ start() {
         Sleep 1000
     }
     else {
-        global idlecount := idlecount + 1
         ToolTip "Derank Count: " . derank_count . "`nIdle Count: " . idlecount
         if idlecount > 3 {
             Send("{Enter}")
             SetTimer () => ToolTip(), -1000
             global idlecount := 0
         }
+        global idlecount := idlecount + 1
     }
     if (derank_count >= 5) {
         MsgBox "Deranking completed. Total deranks: " . derank_count
@@ -101,6 +102,8 @@ start() {
     ;     MouseMove A_ScreenHeight, A_ScreenWidth
     ; }
     MouseMove A_ScreenHeight, A_ScreenWidth, 5
+    global idlecount := 0
+    return 0
 }
 
 getready() {
@@ -197,4 +200,13 @@ quit() {
         Click(quitx, quity)
         return 1
     } return 0
+}
+
+; Helper function to click on an image if found
+ClickIfFound(file, x1, y1, x2, y2) {
+    if ImageSearch(&x, &y, x1, y1, x2, y2, file) {
+        Click(x, y)
+        return true
+    }
+    return false
 }
