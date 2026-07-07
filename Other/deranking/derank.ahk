@@ -18,9 +18,8 @@ loop {
 
 start() {
     actions := [
-        getready, play, next, missout, skip, starup, quitbtn
+        getready, play, missout, skip, starup, quitbtn
     ]
-    global idlecount := 0
     for action in actions {
         if (action()) {
             return 0
