@@ -13,12 +13,15 @@ CoordMode('Pixel', 'Screen')
 
 loop {
     if (ImageSearch(&upgx, &upgy, 0, 0, A_ScreenWidth, A_ScreenHeight, "*20 upg.png")) {
-        Click(upgx, upgy + 100)
+        MouseMove(upgx, upgy)
+    }
+    else if (ImageSearch(&ip1x, &ip1y, 0, 0, 1680, 990, "*20 ip1.png")) {
+        MouseMove(ip1x, ip1y)
     }
     ; else if (ImageSearch(&ipx, &ipy, 0, 0, 1680, 990, "*20 ip.png")) {
-    ;     Click(ipx, ipy)
+    ;     MouseMove(ipx, ipy)
     ; }
     else if (ImageSearch(&ipux, &ipuy, 0, 0, 1680, 990, "*30 ipu.png")) {
-        Click(ipux, ipuy)
+        MouseMove(ipux, ipuy)
     }
 }
