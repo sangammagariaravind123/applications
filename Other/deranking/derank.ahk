@@ -18,15 +18,28 @@ loop {
 }
 
 start() {
-    getready()
-    play()
-    next()
-    Sleep 1000
-    missout()
-    skip()
-    starup()
-    quit()
-    if (ImageSearch(&disconnectedx, &disconnectedy, 1200, 700, 1680, 990, "*20 10disconnected.png")) {
+    if getready() {
+        Sleep 10
+    }
+    else if play() {
+        Sleep 10
+    }
+    else if next() {
+        Sleep 1000
+    }
+    else if missout() {
+        Sleep 10
+    }
+    else if skip() {
+        Sleep 10
+    }
+    else if starup() {
+        Sleep 10
+    }
+    else if quit() {
+        Sleep 10
+    }
+    else if (ImageSearch(&disconnectedx, &disconnectedy, 1200, 700, 1680, 990, "*20 10disconnected.png")) {
         Click(disconnectedx, disconnectedy)
     }
 
@@ -36,10 +49,6 @@ start() {
     else if (ImageSearch(&rank_downx, &rank_downy, 400, 400, 1800, 1000, "*20 10rank_down.png")) {
         Click(rank_downx, rank_downy)
         global derank_count := derank_count + 1
-    }
-    if (derank_count >= 5) {
-        MsgBox "Deranking completed. Total deranks: " . derank_count
-        ExitApp
     }
     ;connection error => retry button
     else if (ImageSearch(&retryx, &retryy, 400, 400, 1800, 1000, "*20 10retry.png")) {
@@ -84,6 +93,10 @@ start() {
             global idlecount := 0
         }
     }
+    if (derank_count >= 5) {
+        MsgBox "Deranking completed. Total deranks: " . derank_count
+        ExitApp
+    }
     ; if (idlecount >= 3) {
     ;     MouseMove A_ScreenHeight, A_ScreenWidth
     ; }
@@ -108,6 +121,7 @@ getready() {
         MouseMove(900, 1050, 100)
         Sleep 500
         Click(900, 1000)
+        return 1
     }
 }
 
@@ -122,12 +136,7 @@ play() {
             Click(playx, playy)
             Sleep 2000
         }
-        Sleep 20000
-        Send("{Esc}")
-        Sleep 700
-        if (ImageSearch(&quitx, &quity, 1200, 700, 1680, 990, "*20 5quit.png")) {
-            Click(quitx, quity)
-        }
+        return 1
     }
 }
 
@@ -135,6 +144,7 @@ skip() {
     if (ImageSearch(&skipx, &skipy, 1200, 700, 1680, 990, "*20 20skip.png")) {
         Send("{D}")
         Sleep 500
+        return 1
     }
 }
 
@@ -142,6 +152,7 @@ starup() {
     if (ImageSearch(&starupx, &starupy, 1200, 700, 1680, 990, "*20 10starup.png")) {
         Send("{D}")
         Sleep 500
+        return 1
     }
 }
 
@@ -164,6 +175,9 @@ next() {
     else if (ImageSearch(&next5x, &next5y, 1200, 700, 1680, 990, "*20 3next5.png")) {
         Click(next5x, next5y)
     }
+    else {
+        return 0
+    } return 1
 }
 
 missout() {
@@ -173,10 +187,14 @@ missout() {
     else if (ImageSearch(&missout2x, &missout2y, 1200, 700, 1680, 990, "*20 5missout2.png")) {
         Click(missout2x, missout2y)
     }
+    else {
+        return 0
+    } return 1
 }
 
 quit() {
     if (ImageSearch(&quitx, &quity, 1200, 700, 1680, 990, "*20 5quit.png")) {
         Click(quitx, quity)
-    }
+        return 1
+    } return 0
 }
