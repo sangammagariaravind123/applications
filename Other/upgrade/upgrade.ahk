@@ -18,4 +18,7 @@ loop {
     else if (ImageSearch(&ipx, &ipy, 0, 0, 1680, 990, "*20 ip.png")) {
         Click(ipx, ipy)
     }
+    else if (ImageSearch(&ipux, &ipuy, 0, 0, 1680, 990, "*20 ipu.png")) {
+        Click(ipux, ipuy)
+    }
 }
