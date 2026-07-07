@@ -6,7 +6,7 @@
     ExitApp
 }
 
-^+t:: {
++z:: {
     Pause(A_IsPaused ? False : True)
 }
 
@@ -21,6 +21,7 @@ start() {
     getready()
     play()
     next()
+    Sleep 1000
     missout()
     skip()
     starup()
@@ -62,15 +63,15 @@ start() {
     else {
         global idlecount := idlecount + 1
         ToolTip "Derank Count: " . derank_count . "`nIdle Count: " . idlecount
-        if idlecount > 9 {
+        if idlecount > 3 {
             Send("{Enter}")
             SetTimer () => ToolTip(), -1000
+            global idlecount := 0
         }
     }
-    if (idlecount >= 10) {
-        MouseMove A_ScreenHeight, A_ScreenWidth
-        global idlecount := 0
-    }
+    ; if (idlecount >= 3) {
+    ;     MouseMove A_ScreenHeight, A_ScreenWidth
+    ; }
     MouseMove A_ScreenHeight, A_ScreenWidth
 }
 
@@ -103,7 +104,7 @@ play() {
             Click(playx, playy)
             Sleep 2000
         }
-        Sleep 18000
+        Sleep 20000
         Send("{Esc}")
         Sleep 700
         if (ImageSearch(&quitx, &quity, 1200, 700, 1680, 990, "*20 5quit.png")) {
@@ -138,6 +139,12 @@ next() {
     }
     else if (ImageSearch(&next3x, &next3y, 1200, 700, 1680, 990, "*20 3next3.png")) {
         Click(next3x, next3y)
+    }
+    else if (ImageSearch(&next4x, &next4y, 1200, 700, 1680, 990, "*20 3next4.png")) {
+        Click(next4x, next4y)
+    }
+    else if (ImageSearch(&next5x, &next5y, 1200, 700, 1680, 990, "*20 3next5.png")) {
+        Click(next5x, next5y)
     }
 }
 
