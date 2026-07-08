@@ -17,11 +17,16 @@ loop {
 }
 
 start() {
+    if (derank_count >= 5) {
+        MsgBox "Deranking completed. Total deranks: " . derank_count
+        ExitApp
+    }
     actions := [
         getready, play, missout, skip, starup, quitbtn
     ]
     for action in actions {
         if (action()) {
+            global idlecount := 0
             return 0
         }
     }
@@ -51,18 +56,18 @@ start() {
     ; else if (ImageSearch(&initx, &inity, 0, A_ScreenHeight / 2, A_ScreenWidth, A_ScreenHeight, "*20 2init.png")) {
     ;     Click(initx, inity) ; 2 Initializing race
     ; }
-    else if (ImageSearch(&waitingx, &waitingy, 0, A_ScreenHeight / 2, A_ScreenWidth, A_ScreenHeight, "*20 2waiting.png")) {
+    else if (ImageSearch(&waitingx, &waitingy, 0, 900, 400, A_ScreenHeight, "*20 2waiting.png")) {
         Click(waitingx, waitingy) ; 3 Waiting for other players
         quit()
     }
-    else if (ImageSearch(&inmatchx, &inmatchy, 0, A_ScreenHeight / 2, A_ScreenWidth, A_ScreenHeight, "*20 2inmatch.png")) {
-        Click(inmatchx, inmatchy) ; 3 Waiting for other players
+    else if (ImageSearch(&inmatchx, &inmatchy, 0, 0, 400, 400, "*20 2inmatch.png")) {
+        Click(inmatchx, inmatchy) ; 3 In match Touchdrive toggle button
         quit()
     }
     else if (ImageSearch(&rewardnextx, &rewardnexty, 1200, 700, 1680, 990, "*20 6rewardnext.png")) {
         Click(rewardnextx, rewardnexty)
     }
-    else if (ImageSearch(&servererrx, &servererry, 0, 0, 1680, 990, "*20 10servererr.png")) {
+    else if (ImageSearch(&servererrx, &servererry, A_ScreenWidth / 2, 0, A_ScreenWidth / 2, A_ScreenHeight / 2, "*20 10servererr.png")) {
         Click(servererrx, servererry)
         Sleep 1000
         Send("{Esc}")
@@ -78,16 +83,15 @@ start() {
             SetTimer () => ToolTip(), -1000
             global idlecount := 0
         }
+        MouseMove A_ScreenHeight, A_ScreenWidth, 5
         global idlecount := idlecount + 1
+        return
     }
-    if (derank_count >= 5) {
-        MsgBox "Deranking completed. Total deranks: " . derank_count
-        ExitApp
-    }
+
     ; if (idlecount >= 3) {
     ;     MouseMove A_ScreenHeight, A_ScreenWidth
     ; }
-    MouseMove A_ScreenHeight, A_ScreenWidth, 5
+    global idlecount := 0
     ; return 0
 }
 
