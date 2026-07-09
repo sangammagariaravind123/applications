@@ -66,6 +66,9 @@ start() {
         Click(inmatchx, inmatchy) ; 3 In match Touchdrive toggle button
         quit()
     }
+    else if (ImageSearch(&carselx, &carsely, 0, 0, 400, 400, "*20 carsel.png")) {
+        Click(carselx, carsely) ; 3 Car Slection
+    }
     else if (ImageSearch(&rewardnextx, &rewardnexty, 1200, 700, 1680, 990, "*20 6rewardnext.png")) {
         Click(rewardnextx, rewardnexty)
     }
