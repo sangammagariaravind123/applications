@@ -67,7 +67,10 @@ start() {
         quit()
     }
     else if (ImageSearch(&carselx, &carsely, 0, 0, 400, 400, "*20 carsel.png")) {
-        Click(carselx, carsely) ; 3 Car Slection
+        ; Click(inmatchx, inmatchy)
+        Send("{Q}") ; 3 Car Slection
+        Sleep 500
+        Send("{Enter}") ; 3 Car Slection
     }
     else if (ImageSearch(&rewardnextx, &rewardnexty, 1200, 700, 1680, 990, "*20 6rewardnext.png")) {
         Click(rewardnextx, rewardnexty)
@@ -90,12 +93,14 @@ start() {
         }
         MouseMove A_ScreenHeight, A_ScreenWidth, 5
         global idlecount := idlecount + 1
+        if (idlecount >= 3) {
+            MouseMove(900, 1050, 100)
+            Sleep 500
+            MouseMove(900, 1000)
+        }
         return
     }
 
-    ; if (idlecount >= 3) {
-    ;     MouseMove A_ScreenHeight, A_ScreenWidth
-    ; }
     global idlecount := 0
     ; return 0
 }
