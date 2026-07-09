@@ -56,14 +56,18 @@ start() {
     ; else if (ImageSearch(&initx, &inity, 0, A_ScreenHeight / 2, A_ScreenWidth, A_ScreenHeight, "*20 2init.png")) {
     ;     Click(initx, inity) ; 2 Initializing race
     ; }
-    else if (ImageSearch(&waitingx, &waitingy, 0, 900, 400, A_ScreenHeight, "*20 2waiting.png")) {
-        Click(waitingx, waitingy) ; 3 Waiting for other players
-        quit()
-    }
-    else if (ImageSearch(&inmatchx, &inmatchy, 0, 0, 400, 400, "*20 2inmatch.png")) {
-        Click(inmatchx, inmatchy) ; 3 In match Touchdrive toggle button
-        quit()
-    }
+
+
+    ; else if (ImageSearch(&waitingx, &waitingy, 0, 900, 400, A_ScreenHeight, "*20 2waiting.png")) {
+    ;     Click(waitingx, waitingy) ; 3 Waiting for other players
+    ;     quit()
+    ; }
+    ; else if (ImageSearch(&inmatchx, &inmatchy, 0, 0, 400, 400, "*20 2inmatch.png")) {
+    ;     Click(inmatchx, inmatchy) ; 3 In match Touchdrive toggle button
+    ;     quit()
+    ; }
+
+
     else if (ImageSearch(&rewardnextx, &rewardnexty, 1200, 700, 1680, 990, "*20 6rewardnext.png")) {
         Click(rewardnextx, rewardnexty)
     }
@@ -173,6 +177,9 @@ missout() {
     }
     else if (ImageSearch(&missout2x, &missout2y, 1200, 700, 1680, 990, "*20 5missout2.png")) {
         Click(missout2x, missout2y)
+    }
+    else if (ImageSearch(&missout3x, &missout3y, 1200, 700, 1680, 990, "*20 5missout3.png")) {
+        Click(missout3x, missout3y)
     }
     else {
         return 0
