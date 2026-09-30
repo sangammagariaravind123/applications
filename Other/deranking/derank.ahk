@@ -9,9 +9,24 @@
     Pause(A_IsPaused ? False : True)
 }
 
+open() {
+    if !WinExist("Asphalt - v52.3.0a - D3D12") and !WinExist("Asphalt Legends Unite") {
+        Run "C:\XboxGames\Asphalt Legends\Content\Asphalt9_gdk_x64_rtl.exe"
+        Sleep(8000)
+    }
+    else if WinExist("Asphalt Legends Unite") {
+        Sleep 1000
+        Send "{# Up}"
+    }
+    else if WinExist("Asphalt - v52.3.0a - D3D12") {
+        WinActivate("Asphalt - v52.3.0a - D3D12")
+    }
+}
+
 global derank_count := 0
 global idlecount := 0
 loop {
+    open()
     start()
     Sleep 100
 }
@@ -22,7 +37,7 @@ start() {
         ExitApp
     }
     actions := [
-        getready, play, missout, skip, starup, quitbtn
+        getready, play, skip, starup, quitbtn, watchad
     ]
     for action in actions {
         if (action()) {
@@ -36,9 +51,6 @@ start() {
     else if (ImageSearch(&disconnectedx, &disconnectedy, 1200, 700, 1680, 990, "*20 10disconnected.png")) {
         Click(disconnectedx, disconnectedy)
     }
-    ;else if (ImageSearch(&watchadx, &watchady, 1000, 600, 1910, 1180, "*20 20watchad.png")) {
-    ;    Click(watchadx, watchady)
-    ;}
     else if (ImageSearch(&rank_downx, &rank_downy, 400, 400, 1800, 1000, "*20 10rank_down.png")) {
         Click(rank_downx, rank_downy)
         global derank_count := derank_count + 1
@@ -46,6 +58,9 @@ start() {
     ;connection error => retry button
     else if (ImageSearch(&retryx, &retryy, 400, 400, 1800, 1000, "*20 10retry.png")) {
         Click(retryx, retryy)
+    }
+    else if (ImageSearch(&mpx, &mpy, 1200, 700, 1680, 990, "*20 0mp.png")) {
+        Click(mpx, mpy)
     }
     else if (ImageSearch(&mp1x, &mp1y, 0, 600, 960, 1200, "*20 0mp1.png")) {
         Click(mp1x, mp1y)
@@ -58,14 +73,14 @@ start() {
     ; }
 
 
-    else if (ImageSearch(&waitingx, &waitingy, 0, 900, 400, A_ScreenHeight, "*20 2waiting.png")) {
-        Click(waitingx, waitingy) ; 3 Waiting for other players
-        quit()
-    }
-    else if (ImageSearch(&inmatchx, &inmatchy, 0, 0, 400, 400, "*20 2inmatch.png")) {
-        Click(inmatchx, inmatchy) ; 3 In match Touchdrive toggle button
-        quit()
-    }
+    ; else if (ImageSearch(&waitingx, &waitingy, 0, 900, 400, A_ScreenHeight, "*20 2waiting.png")) {
+    ;     Click(waitingx, waitingy) ; 3 Waiting for other players
+    ;     quit()
+    ; }
+    ; else if (ImageSearch(&inmatchx, &inmatchy, 0, 0, 400, 400, "*20 2inmatch.png")) {
+    ;     Click(inmatchx, inmatchy) ; 3 In match Touchdrive toggle button
+    ;     quit()
+    ; }
     else if (ImageSearch(&carselx, &carsely, 0, 0, 400, 400, "*20 carsel.png")) {
         ; Click(inmatchx, inmatchy)
         Send("{Q}") ; 3 Car Slection
@@ -80,7 +95,7 @@ start() {
         Sleep 1000
         Send("{Esc}")
     }
-    else if (ImageSearch(&conn_errx, &conn_erry, 1200, 700, 1680, 990, "*40 10conn_err.png")) {
+    else if (ImageSearch(&conn_errx, &conn_erry, 1200, 200, 1680, 990, "*40 10conn_err.png")) {
         Click(conn_errx, conn_erry)
         Sleep 1000
     }
@@ -110,7 +125,7 @@ getready() {
         Click(grx, gry)
         Sleep 1500
         Sleep 200
-        Send("{Q}")
+        ; Send("{Q}")
         Sleep 1000
         ; Click(1107, 164)  ; Select League
         ; Sleep 100
@@ -186,6 +201,14 @@ missout() {
     }
     else if (ImageSearch(&missout3x, &missout3y, 1200, 700, 1680, 990, "*20 5missout3.png")) {
         Click(missout3x, missout3y)
+    }
+    else {
+        return 0
+    } return 1
+}
+watchad() {
+    if (ImageSearch(&watchadx, &watchady, 1200, 700, 1680, 990, "*20 4watchad.png")) {
+        Click(watchadx, watchady)
     }
     else {
         return 0
